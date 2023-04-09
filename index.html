@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/output.css">
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@ericblade/quagga2/dist/quagga.min.js"></script>
+    <script src="./node_modules/html5-qrcode/html5-qrcode.min.js" type="text/javascript"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+    <script src="quagga.js"></script>
+</head>
+<body>
+
+    <div class="grid">
+        <div id="reader" class="artboard phone-1 place-self-center top-32 lg:top-40" >
+            <h1 id="hasil"></h1>
+        </div>
+    </div>
+
+    <script>
+        Html5Qrcode.getCameras().then(devices => {
+            // console.log(devices)
+            if (devices && devices.length) {
+                var cameraId = devices[0].id;
+                const html5QrCode = new Html5Qrcode("reader");
+                    html5QrCode.start(
+                        // { 
+                        //     facingMode:
+                        //     "environment"
+                        // },
+                        cameraId, {
+                            fps: 10,   
+                            qrbox: { width: 250, height: 250 }  
+                        },(decodedText, decodedResult) => {
+                            console.log(decodedText)
+                            // document.getElementById('hasil').innerText += decodedText;
+                        },(errorMessage) => {
+                    }).catch((err) => {
+                    console.log(err)
+                });
+            }
+        });
+
+        // console.log(Html5Qrcode.getCameras())
+        // const scanner = new Html5QrcodeScanner('reader', {
+        //     fps:10,
+        //     qrbox: {
+        //         width: 500,
+        //         height: 500
+        //     },
+        // },  /* verbose= */ false);
+        // scanner.render(onScanSuccess, onScanFailed)
+
+        // function onScanSuccess(qrCodeMessage) {
+        //     document.getElementById('hasil').innerText += qrCodeMessage;
+        //     scanner.clear()
+        // }
+        // function onScanFailed(error) {
+        //     console.warn(`Code scan error = ${error}`);
+        // }
+    </script>
+
+    <!-- <div class="grid lg:m-0 place-content-center">
+        <div class="col  card w-96 bg-base-100 shadow-xl">
+            <figure class="px-10 pt-10">
+                <video id="preview"></video>
+            </figure>
+            <div class="card-body items-center text-center">
+                <h2 class="card-title" id="val"></h2>
+                <p>If a dog chews shoes whose shoes does he choose?</p>
+                <div class="card-actions">
+                <button class="btn btn-primary">pencet</button>
+            </div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <!-- <script>
+        const Quagga = require('@ericblade/quagga2').default; 
+
+    </script>
+    <script src="quagga.js"></script> -->
+    <!-- <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+    <script type="text/javascript">
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+            scanner.addListener('scan', function (content) {
+            document.getElementById('val').innerText = content;
+        });
+        Instascan.Camera.getCameras().then(function (cameras) {
+            // if (cameras.length > 1) {
+            //     scanner.start(cameras[1]);
+            // } else 
+            if (cameras.length > 0) {
+                scanner.start(cameras[0]);
+            } else {
+                console.error('No cameras found.');
+            }
+        }).catch(function (e) {
+            console.error(e);
+        });
+    </script>
+    <script src="index.js"></script>
+    <script type="text/javascript" src="instascan.min.js"></script> -->
+
+    <script>
+        import Quagga from '@ericblade/quagga2'; // ES6
+    </script>
+</body>
+</html>

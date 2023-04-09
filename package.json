@@ -1,0 +1,24 @@
+{
+  "name": "webscanner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./src/input.css -o ./css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ericblade/quagga2": "^1.8.2",
+    "daisyui": "^2.51.3",
+    "html5-qrcode": "^2.3.7",
+    "instascan": "^1.0.0",
+    "quagga": "^0.12.1"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.13",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7"
+  }
+}
